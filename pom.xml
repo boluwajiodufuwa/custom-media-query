@@ -3,7 +3,7 @@
 
     <groupId>org.vaddon</groupId>
     <artifactId>mediaquery</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>MediaQuery</name>
     <description>Integration of iron-media-query for Vaadin platform</description>
 

@@ -31,6 +31,12 @@ public class CustomMediaQuery extends PolymerTemplate<CustomMediaQuery.CustomMed
         });
     }
 
+    public CustomMediaQuery(Consumer<Boolean> action, String query) {
+        this(action);
+        setQuery(query);
+    }
+
+
     public void setQuery(String query) {
         getModel().setQuery(query);
         action.accept(getModel().getQuerymatches());
