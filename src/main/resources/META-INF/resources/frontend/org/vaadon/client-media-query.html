@@ -52,18 +52,23 @@
 
             ready() {
                 super.ready();
-                this.addEventListener('querymatches-changed', function (ev) {
-                    if (this.querymatches && this.queryCss != null && this.element != null) {
-                        var mediaQueryCss = JSON.parse(this.queryCss);
-                        for (var x in mediaQueryCss) {
-                            this.element.style[x] = mediaQueryCss[x];
-                        }
+                this.addEventListener('querymatches-changed', this.tryApplyQueryCss);
+            }
+
+            tryApplyQueryCss(){
+                if (this.querymatches && this.queryCss != null && this.element != null) {
+                    var mediaQueryCss = JSON.parse(this.queryCss);
+                    for (var x in mediaQueryCss) {
+                        this.element.style[x] = mediaQueryCss[x];
                     }
-                });
+                }
             }
 
             setElement(element) {
                 this.element = element;
+                if (this.querymatches){
+                    this.tryApplyQueryCss();
+                }
             }
         }
 

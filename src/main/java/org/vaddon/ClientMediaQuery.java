@@ -12,6 +12,9 @@ import org.vaddon.css.query.CustomElementStylePropertyMap;
 import org.vaddon.css.query.MediaQuery;
 import org.vaddon.json.JSONStyleParser;
 
+/**
+ * Allows to bind media queries directly to an element on the client side without a server round trip
+ */
 @Tag("client-media-query")
 @HtmlImport("org/vaadon/client-media-query.html")
 public class ClientMediaQuery extends PolymerTemplate<ClientMediaQuery.CustomMediaQueryModel> {

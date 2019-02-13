@@ -26,6 +26,6 @@ public class CustomElementStylePropertyMap extends ElementStylePropertyMap {
     }
 
     public interface PropertyChangedListener {
-        public void onChange(Style style);
+        void onChange(Style style);
     }
 }

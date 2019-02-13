@@ -41,13 +41,15 @@ public class DemoView extends VerticalLayout {
         div.setHeight("200px");
         ClientMediaQuery clientMediaQuery1200 = new ClientMediaQuery(div);
         ClientMediaQuery clientMediaQuery800 = new ClientMediaQuery(div);
-        clientMediaQuery1200.setQuery(new MediaQuery(new MaxWidth("1200px")));
-        clientMediaQuery800.setQuery(new MediaQuery(new MinWidth("800px")));
+        ClientMediaQuery clientMediaQuery0 = new ClientMediaQuery(div);
+        clientMediaQuery1200.setQuery(new MediaQuery(new MinWidth("1200px")));
+        clientMediaQuery800.setQuery(new MediaQuery(new MinWidth("800px"),new MaxWidth("1200px")));
+        clientMediaQuery0.setQuery(new MediaQuery(new MaxWidth("800px")));
         clientMediaQuery1200.getQueryStyle().set("background","green");
         clientMediaQuery800.getQueryStyle().set("background","blue");
-
+        clientMediaQuery0.getQueryStyle().set("background","red");
         add(new H1("Client-Side-Query"));
-        add(div, clientMediaQuery1200, clientMediaQuery800);
+        add(div,clientMediaQuery0,clientMediaQuery800, clientMediaQuery1200);
     }
 
     private void toggleColumnCountry(boolean visible){
