@@ -5,9 +5,13 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import org.vaddon.css.query.MediaQuery;
+import org.vaddon.css.query.values.WidthAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.vaddon.css.query.values.WidthAttributes.*;
 
 @Route("")
 public class DemoView extends VerticalLayout {
@@ -31,6 +35,21 @@ public class DemoView extends VerticalLayout {
         add(customMediaQuery1200, customMediaQuery800, grid);
         customMediaQuery1200.setQuery("(min-width: 1200px)");
         customMediaQuery800.setQuery("(min-width: 800px)");
+
+        Div div = new Div();
+        div.setWidth("200px");
+        div.setHeight("200px");
+        ClientMediaQuery clientMediaQuery1200 = new ClientMediaQuery(div);
+        ClientMediaQuery clientMediaQuery800 = new ClientMediaQuery(div);
+        ClientMediaQuery clientMediaQuery0 = new ClientMediaQuery(div);
+        clientMediaQuery1200.setQuery(new MediaQuery(new MinWidth("1200px")));
+        clientMediaQuery800.setQuery(new MediaQuery(new MinWidth("800px"),new MaxWidth("1200px")));
+        clientMediaQuery0.setQuery(new MediaQuery(new MaxWidth("800px")));
+        clientMediaQuery1200.getQueryStyle().set("background","green");
+        clientMediaQuery800.getQueryStyle().set("background","blue");
+        clientMediaQuery0.getQueryStyle().set("background","red");
+        add(new H1("Client-Side-Query"));
+        add(div,clientMediaQuery0,clientMediaQuery800, clientMediaQuery1200);
     }
 
     private void toggleColumnCountry(boolean visible){
