@@ -36,6 +36,11 @@
                     }
                 }
             }
+
+            ready() {
+                super.ready();
+                this.$server.applyQuerymatches(this.querymatches);
+            }
         }
         customElements.define(CustomMediaQuery.is, CustomMediaQuery);
     </script>

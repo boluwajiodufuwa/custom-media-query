@@ -1,6 +1,7 @@
 package org.vaddon;
 
 
+import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
@@ -25,7 +26,7 @@ public class CustomMediaQuery extends PolymerTemplate<CustomMediaQuery.CustomMed
 
     public CustomMediaQuery(Consumer<Boolean> action) {
         this.action = action;
-        getModel().setQuerymatches(true);
+     //   getModel().setQuerymatches(true);
         getElement().addPropertyChangeListener("querymatches", e->
         {
             action.accept(getModel().getQuerymatches());
@@ -43,5 +44,16 @@ public class CustomMediaQuery extends PolymerTemplate<CustomMediaQuery.CustomMed
 
     public String getQuery() {
         return getModel().getQuery();
+    }
+
+    @ClientCallable
+    public void applyQuerymatches(boolean querymatches){
+        if (querymatches) {
+            System.out.println("applyQuerymatches OK");
+        } else {
+            System.out.println("applyQuerymatches NOK");
+        }
+        //  getModel().setQuerymatches(querymatches);
+        action.accept(querymatches);
     }
 }
