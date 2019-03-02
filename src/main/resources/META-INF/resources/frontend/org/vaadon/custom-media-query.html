@@ -16,7 +16,6 @@
                 return 'custom-media-query'
             }
 
-
             static get properties() {
                 return {
 
@@ -32,11 +31,19 @@
                      * The CSS media query to evaluate.
                      */
                     query: {
-                        type: String
+                        type: String,
+                        notify: true
                     }
                 }
             }
+            ready() {
+                this.addEventListener('query-changed', function (ev) {
+                    this.dispatchEvent(new CustomEvent('querymatches', {}));
+                });
+                super.ready();
+            }
         }
+
         customElements.define(CustomMediaQuery.is, CustomMediaQuery);
     </script>
 </dom-module>
