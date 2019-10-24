@@ -20,7 +20,7 @@ import org.vaddon.json.JSONStyleParser;
 @Tag("client-media-query")
 @NpmPackage(value = "@polymer/iron-media-query",version = "3.0.1")
 @HtmlImport("org/vaadon/client-media-query.html")
-@JsModule("client-media-query.js")
+@JsModule("./client-media-query.js")
 public class ClientMediaQuery extends PolymerTemplate<ClientMediaQuery.CustomMediaQueryModel> {
 
     public interface CustomMediaQueryModel extends TemplateModel {

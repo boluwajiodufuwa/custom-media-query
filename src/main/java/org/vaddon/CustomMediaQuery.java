@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 @Tag("custom-media-query")
 @NpmPackage(value = "@polymer/iron-media-query",version = "3.0.1")
 @HtmlImport("org/vaadon/custom-media-query.html")
-@JsModule("custom-media-query.js")
+@JsModule("./custom-media-query.js")
 public class CustomMediaQuery extends PolymerTemplate<CustomMediaQuery.CustomMediaQueryModel> {
 
     public interface CustomMediaQueryModel extends TemplateModel {
