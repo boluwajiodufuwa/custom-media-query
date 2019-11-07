@@ -1,6 +1,6 @@
 # MediaQuery
 
-Vaadin 10 Java integration of https://github.com/PolymerElements/iron-media-query
+Vaadin 14 Java integration of https://github.com/PolymerElements/iron-media-query
 
 ## Development instructions
 
