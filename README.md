@@ -6,7 +6,7 @@ Vaadin 14 Java integration of https://github.com/PolymerElements/iron-media-quer
 
 Starting the test/demo server:
 ```
-mvn jetty:run
+mvn -Pdemo jetty:run
 ```
 
 This deploys demo at http://localhost:8080
