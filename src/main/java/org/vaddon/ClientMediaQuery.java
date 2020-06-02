@@ -50,7 +50,7 @@ public class ClientMediaQuery extends PolymerTemplate<ClientMediaQuery.CustomMed
     }
 
     public void setElement(Component component) {
-        getElement().callFunction("setElement", component.getElement());
+        getElement().callJsFunction("setElement", component.getElement());
     }
 
     public Style getQueryStyle() {

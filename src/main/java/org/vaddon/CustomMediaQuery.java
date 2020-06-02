@@ -29,9 +29,7 @@ public class CustomMediaQuery extends PolymerTemplate<CustomMediaQuery.CustomMed
 
     public CustomMediaQuery(Consumer<Boolean> action) {
         this.action = action;
-        getElement().addSynchronizedProperty("querymatches");
-        getElement().addSynchronizedPropertyEvent("querymatches");
-        getElement().addPropertyChangeListener("querymatches", e->
+        getElement().addPropertyChangeListener("querymatches","querymatches-changed", e ->
         {
             action.accept(getModel().getQuerymatches());
         });
