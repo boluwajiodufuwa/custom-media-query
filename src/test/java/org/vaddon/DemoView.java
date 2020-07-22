@@ -50,6 +50,23 @@ public class DemoView extends VerticalLayout {
         clientMediaQuery0.getQueryStyle().set("background","red");
         add(new H1("Client-Side-Query"));
         add(div,clientMediaQuery0,clientMediaQuery800, clientMediaQuery1200);
+
+        Div coloredDiv = new Div();
+        coloredDiv.setWidth("50%");
+        coloredDiv.setHeight("200px");
+        ElementMediaQuery elementMediaQuery = new ElementMediaQuery(ok -> changeColor(coloredDiv, ok));
+        elementMediaQuery.setElement(coloredDiv);
+        elementMediaQuery.setQuery("(min-width: 800px)");
+        add(elementMediaQuery,coloredDiv);
+
+    }
+
+    private void changeColor(Div coloredDiv, Boolean ok) {
+        if (ok) {
+            coloredDiv.getStyle().set("background-color", "green");
+        } else {
+            coloredDiv.getStyle().set("background-color", "red");
+        }
     }
 
     private void toggleColumnCountry(boolean visible){
