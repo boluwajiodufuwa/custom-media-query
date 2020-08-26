@@ -37,7 +37,7 @@ public class ElementMediaQuery extends Component {
     }
 
     @ClientCallable
-    private void querymatchesChanged(boolean querymatches) {
+    private void querymatchesChanged(Boolean querymatches) {
         action.accept(querymatches);
     }
 }

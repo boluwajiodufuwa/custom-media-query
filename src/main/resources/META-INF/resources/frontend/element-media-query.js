@@ -82,7 +82,7 @@ class ElementMediaQuery extends ResizeObservableElement(LitElement) {
 
     connectedCallback() {
         super.connectedCallback();
-        let matches = elementMatchMedia(this.element, this.query).matches;
+        this.querymatches = elementMatchMedia(this.element, this.query).matches;
         this.$server.querymatchesChanged(this.querymatches);
     }
 
