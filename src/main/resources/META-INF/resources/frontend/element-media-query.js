@@ -87,7 +87,9 @@ class ElementMediaQuery extends ResizeObservableElement(LitElement) {
     }
 
     disconnectedCallback() {
-        this.constructor.observer.unobserve(this.element);
+        if (this.element) {
+            this.constructor.observer.unobserve(this.element);
+        }
     }
 }
 
