@@ -10,6 +10,7 @@ import org.vaddon.css.query.values.WidthAttributes;
 /**
  * @author jcgueriaud
  */
+/**Change the color of a div is the window size < 1024px and div width < 300px **/
 @Route("mediaquery")
 public class MediaQueryView extends VerticalLayout {
 
