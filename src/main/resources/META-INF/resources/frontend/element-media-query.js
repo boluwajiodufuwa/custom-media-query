@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html } from 'lit';
 import elementMatchMedia from 'element-match-media';
 
 /**
@@ -50,9 +50,6 @@ class ElementMediaQuery extends ResizeObservableElement(LitElement) {
              * The element to which the styles should be applied
              */
             element: {
-                type: Object
-            },
-            _elementMatchMedia: {
                 type: Object
             }
         };

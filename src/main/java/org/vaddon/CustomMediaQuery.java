@@ -1,40 +1,26 @@
 package org.vaddon;
 
 
-import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.dependency.NpmPackage;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.templatemodel.TemplateModel;
+import com.vaadin.flow.shared.Registration;
 import org.vaddon.css.query.MediaQuery;
 
 import java.util.function.Consumer;
 
-@Tag("custom-media-query")
-@NpmPackage(value = "@polymer/iron-media-query",version = "3.0.1")
-@JsModule("./custom-media-query.js")
-public class CustomMediaQuery extends PolymerTemplate<CustomMediaQuery.CustomMediaQueryModel> {
-
-    public interface CustomMediaQueryModel extends TemplateModel {
-        void setQuery(String propertyValue);
-        String getQuery();
-
-        void setQuerymatches(boolean queryMatches);
-        boolean getQuerymatches();
-    }
-
+@Tag("lit-media-query")
+@JsModule("./lit-media-query.js")
+public class CustomMediaQuery extends Component {
     private Consumer<Boolean> action;
 
     public CustomMediaQuery(Consumer<Boolean> action) {
         this.action = action;
-        getElement().addPropertyChangeListener("querymatches","querymatches-changed", e ->
-        {
-            action.accept(getModel().getQuerymatches());
-        });
+        addChangedListener(e ->
+                action.accept(e.isChanged()));
     }
 
     public void setQuery(String query) {
-        getModel().setQuery(query);
+        getElement().setProperty("query", query);
     }
 
     public void setQuery(MediaQuery query){
@@ -42,6 +28,28 @@ public class CustomMediaQuery extends PolymerTemplate<CustomMediaQuery.CustomMed
     }
 
     public String getQuery() {
-        return getModel().getQuery();
+        return getElement().getProperty("query");
+    }
+
+
+    public Registration addChangedListener(ComponentEventListener<ChangedEvent> listener) {
+        return addListener(ChangedEvent.class, listener);
+    }
+
+
+    @DomEvent("changed")
+    public static class ChangedEvent
+            extends ComponentEvent<CustomMediaQuery> {
+
+        private boolean changed;
+        public ChangedEvent(CustomMediaQuery source,
+                            boolean fromClient, @EventData("event.detail.value") boolean changed) {
+            super(source, fromClient);
+            this.changed = changed;
+        }
+
+        public boolean isChanged() {
+            return changed;
+        }
     }
 }

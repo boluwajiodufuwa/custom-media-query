@@ -1,5 +1,5 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/iron-media-query/iron-media-query.js';
+import './lit-media-query.js';
 
 // Extend the PolymerElement base class
 class ClientMediaQuery extends PolymerElement {
@@ -13,7 +13,7 @@ class ClientMediaQuery extends PolymerElement {
      */
     static get template() {
         return html`
-        <iron-media-query query="{{query}}" query-matches="{{querymatches}}"></iron-media-query>
+        <lit-media-query query="{{query}}" query-matches="{{querymatches}}"></lit-media-query>
     `;
     }
     static get is() {
