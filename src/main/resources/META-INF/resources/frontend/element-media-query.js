@@ -31,7 +31,7 @@ class ElementMediaQuery extends LitElement {
     }
     setElement(element) {
         if (this.element) {
-            this._observer.unobserve(this.element);debugger;
+            this._observer.unobserve(this.element);
         }
         this.element = element;
         if (this._observer === undefined) {
@@ -48,7 +48,7 @@ class ElementMediaQuery extends LitElement {
                 });
             });
         }
-        element.addEventListener('resize', e => {debugger;
+        element.addEventListener('resize', e => {
             const matches = elementMatchMedia(this.element, this.query).matches;
             if (this.querymatches !== matches) {
                 this.querymatches = matches;
