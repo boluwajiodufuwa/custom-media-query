@@ -19,31 +19,15 @@ import org.vaddon.json.JSONStyleParser;
 @Tag("client-media-query")
 @NpmPackage(value = "@polymer/iron-media-query",version = "3.0.1")
 @JsModule("./client-media-query.js")
-public class ClientMediaQuery extends PolymerTemplate<ClientMediaQuery.CustomMediaQueryModel> {
-
-    public interface CustomMediaQueryModel extends TemplateModel {
-        String getQuery();
-
-        void setQuery(String propertyValue);
-
-        String getQueryCss();
-
-        void setQueryCss(String style);
-
-        boolean getQuerymatches();
-
-        void setQuerymatches(boolean queryMatches);
-    }
-
+public class ClientMediaQuery extends Component {
     private CustomElementStylePropertyMap queryStyle;
 
     public ClientMediaQuery(Component component) {
-        getModel().setQuerymatches(true);
         setElement(component);
         StateNode stateNode = new StateNode();
         queryStyle = new CustomElementStylePropertyMap(stateNode);
         queryStyle.addChangeListener(style -> {
-            getModel().setQueryCss(new JSONStyleParser(style).getJSON());
+            getElement().setProperty("queryCss", new JSONStyleParser(style).getJSON());
         });
     }
 
@@ -55,16 +39,16 @@ public class ClientMediaQuery extends PolymerTemplate<ClientMediaQuery.CustomMed
         return queryStyle.getStyle();
     }
 
-    public String getQuery() {
-        return getModel().getQuery();
-    }
-
     public void setQuery(String query) {
-        getModel().setQuery(query);
+        getElement().setProperty("query", query);
     }
 
-    public void setQuery(MediaQuery query) {
+    public void setQuery(MediaQuery query){
         setQuery(query.getCssValue());
+    }
+
+    public String getQuery() {
+        return getElement().getProperty("query");
     }
 
 }
