@@ -113,7 +113,7 @@
                         <artifactId>jetty-maven-plugin</artifactId>
                         <version>${jetty.version}</version>
                         <configuration>
-                            <scanIntervalSeconds>-1</scanIntervalSeconds>
+                            <scanIntervalSeconds>3</scanIntervalSeconds>
                             <!-- Use test scope because the UI/demo classes are in
                                 the test package. -->
                             <useTestScope>true</useTestScope>
@@ -133,7 +133,6 @@
                             <execution>
                                 <goals>
                                     <goal>prepare-frontend</goal>
-                                    <goal>build-frontend</goal>
                                 </goals>
                                 <configuration>
                                     <convertHtml>false</convertHtml>
