@@ -9,7 +9,7 @@ import org.vaddon.css.query.MediaQuery;
 import java.util.function.Consumer;
 
 @Tag("lit-media-query")
-@JsModule("./lit-media-query.js")
+@JsModule("./lit-media-query.ts")
 public class CustomMediaQuery extends Component {
     private Consumer<Boolean> action;
 

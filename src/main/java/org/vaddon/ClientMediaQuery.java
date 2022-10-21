@@ -4,11 +4,8 @@ package org.vaddon;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.dependency.NpmPackage;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.internal.StateNode;
-import com.vaadin.flow.templatemodel.TemplateModel;
 import org.vaddon.css.query.CustomElementStylePropertyMap;
 import org.vaddon.css.query.MediaQuery;
 import org.vaddon.json.JSONStyleParser;
@@ -17,8 +14,7 @@ import org.vaddon.json.JSONStyleParser;
  * Allows to bind media queries directly to an element on the client side without a server round trip
  */
 @Tag("client-media-query")
-@NpmPackage(value = "@polymer/iron-media-query",version = "3.0.1")
-@JsModule("./client-media-query.js")
+@JsModule("./client-media-query.ts")
 public class ClientMediaQuery extends Component {
     private CustomElementStylePropertyMap queryStyle;
 

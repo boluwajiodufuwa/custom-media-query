@@ -5,7 +5,7 @@ import {customElement, property, state} from 'lit/decorators.js';
 export class LitMediaQuery extends LitElement {
 
     @property()
-    query = 'Somebody';
+    public query: string = '(max-width:460px)';
 
     @state()
     private _match: Boolean = false;
@@ -14,8 +14,6 @@ export class LitMediaQuery extends LitElement {
 
     constructor() {
         super();
-        this.query = '(max-width:460px)';
-        this._match = false;
         this.boundResizeHandler = this._handleResize.bind(this);
     }
 
@@ -82,6 +80,7 @@ export class LitMediaQuery extends LitElement {
     }
 
     _handleResize() {
+        console.log("test");
         if (window.matchMedia(this.query).matches) {
             // From no match to match
             if (this._match === false) {
