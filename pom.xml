@@ -3,17 +3,17 @@
 
     <groupId>org.vaddon</groupId>
     <artifactId>mediaquery</artifactId>
-    <version>4.0.2</version>
+    <version>5.0.2</version>
     <name>MediaQuery</name>
     <description>Integration of iron-media-query for Vaadin platform</description>
 
     <properties>
-        <vaadin.version>14.8.1</vaadin.version>
+        <vaadin.version>23.2.4</vaadin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <jetty.version>9.4.15.v20190215</jetty.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <jetty.version>9.4.46.v20220331</jetty.version>
     </properties>
     <organization>
         <name>Jean-Christophe Gueriaud</name>
@@ -40,11 +40,11 @@
     <repositories>
         <repository>
             <id>Vaadin Directory</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
         </repository>
         <repository>
             <id>Vaadin prereleases</id>
-            <url>http://maven.vaadin.com/vaadin-prereleases</url>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
         </repository>
     </repositories>
 
@@ -52,7 +52,7 @@
         <!-- Repository needed for prerelease versions of Vaadin -->
         <pluginRepository>
             <id>Vaadin prereleases</id>
-            <url>http://maven.vaadin.com/vaadin-prereleases</url>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
@@ -68,12 +68,12 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20190722</version>
+            <version>20200518</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -113,7 +113,7 @@
                         <artifactId>jetty-maven-plugin</artifactId>
                         <version>${jetty.version}</version>
                         <configuration>
-                            <scanIntervalSeconds>-1</scanIntervalSeconds>
+                            <scanIntervalSeconds>3</scanIntervalSeconds>
                             <!-- Use test scope because the UI/demo classes are in
                                 the test package. -->
                             <useTestScope>true</useTestScope>
@@ -133,7 +133,6 @@
                             <execution>
                                 <goals>
                                     <goal>prepare-frontend</goal>
-                                    <goal>build-frontend</goal>
                                 </goals>
                                 <configuration>
                                     <convertHtml>false</convertHtml>

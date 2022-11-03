@@ -56,7 +56,7 @@ public class DemoView extends VerticalLayout {
         coloredDiv.setHeight("200px");
         ElementMediaQuery elementMediaQuery = new ElementMediaQuery(ok -> changeColor(coloredDiv, ok));
         elementMediaQuery.setElement(coloredDiv);
-        elementMediaQuery.setQuery("(min-width: 800px)");
+        elementMediaQuery.setQuery("(min-width: 600px)");
         add(elementMediaQuery,coloredDiv);
 
     }

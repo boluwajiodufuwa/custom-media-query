@@ -1,39 +1,8 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html } from 'lit';
 import elementMatchMedia from 'element-match-media';
 
-/**
- * The original code comes from https://gist.github.com/ebidel/3a42415ee1bb9d44020b159270382eba
- * And has been changed
- */
-const ResizeObservableElement = (superclass) => class extends superclass {
-    static get observer() {
-        if (!this._observer) {
-            // Set up a single RO for all elements that inherit from this class. This
-            // has much better performance than creating a separate RO in every
-            // element instance. See https://goo.gl/5uLKZN.
-            this._observer = new ResizeObserver(entries => {
-                window.requestAnimationFrame(() => {
-                    if (!Array.isArray(entries) || !entries.length) {
-                        return;
-                    }
-                    // your code
-                    for (const entry of entries) {
-                        // Custom event works for both node.onresize and node.addEventListener('resize') cases.
-                        const evt = new CustomEvent('resize', {detail: entry, bubbles: false})
-                        entry.target.dispatchEvent(evt);
-                    }
-                });
-            });
-        }
-        return this._observer;
-    }
 
-    constructor() {
-        super();
-    }
-};
-
-class ElementMediaQuery extends ResizeObservableElement(LitElement) {
+class ElementMediaQuery extends LitElement {
     static get properties() {
         return {
             /**
@@ -51,9 +20,6 @@ class ElementMediaQuery extends ResizeObservableElement(LitElement) {
              */
             element: {
                 type: Object
-            },
-            _elementMatchMedia: {
-                type: Object
             }
         };
     }
@@ -64,11 +30,26 @@ class ElementMediaQuery extends ResizeObservableElement(LitElement) {
         super();
     }
     setElement(element) {
+        if (this.element) {
+            this._observer.unobserve(this.element);
+        }
         this.element = element;
-        this.constructor.observer.observe(element);
-
+        if (this._observer === undefined) {
+            this._observer = new ResizeObserver(entries => {
+                window.requestAnimationFrame(() => {
+                    if (!Array.isArray(entries) || !entries.length) {
+                        return;
+                    }
+                    for (const entry of entries) {
+                        // Custom event works for both node.onresize and node.addEventListener('resize') cases.
+                        const evt = new CustomEvent('resize', {detail: entry, bubbles: false})
+                        entry.target.dispatchEvent(evt);
+                    }
+                });
+            });
+        }
         element.addEventListener('resize', e => {
-            let matches = elementMatchMedia(this.element, this.query).matches;
+            const matches = elementMatchMedia(this.element, this.query).matches;
             if (this.querymatches !== matches) {
                 this.querymatches = matches;
                 this.$server.querymatchesChanged(this.querymatches);
@@ -82,13 +63,17 @@ class ElementMediaQuery extends ResizeObservableElement(LitElement) {
 
     connectedCallback() {
         super.connectedCallback();
+        if (this.element && this._observer) {
+            this._observer.observe(this.element);
+        }
         this.querymatches = elementMatchMedia(this.element, this.query).matches;
         this.$server.querymatchesChanged(this.querymatches);
     }
 
     disconnectedCallback() {
-        if (this.element) {
-            this.constructor.observer.unobserve(this.element);
+        super.disconnectedCallback();
+        if (this.element && this._observer) {
+            this._observer.unobserve(this.element);
         }
     }
 }
