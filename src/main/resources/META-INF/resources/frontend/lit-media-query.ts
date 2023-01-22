@@ -35,7 +35,7 @@ export class LitMediaQuery extends LitElement {
     connectedCallback() {
         super.connectedCallback();
         // Check if Visual Viewport API is supported
-        if (typeof window.visualViewport !== 'undefined') {
+        if (typeof window.visualViewport !== 'undefined' && window.visualViewport !== null) {
             window.visualViewport.addEventListener('resize', this.boundResizeHandler);
         } else {
             window.addEventListener('resize', this.boundResizeHandler);
@@ -44,7 +44,7 @@ export class LitMediaQuery extends LitElement {
 
     disconnectedCallback() {
         // Remove event listeners
-        if (typeof window.visualViewport !== 'undefined') {
+        if (typeof window.visualViewport !== 'undefined' && window.visualViewport !== null) {
             window.visualViewport.removeEventListener(
                 'resize',
                 this.boundResizeHandler
